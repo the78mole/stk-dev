@@ -1,0 +1,30 @@
+{
+  "name": "SuperTuxKart Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cmake"
+      ]
+    }
+  },
+  "runArgs": [
+    "--env", "DISPLAY=${env:DISPLAY}",
+    "--volume", "/tmp/.X11-unix:/tmp/.X11-unix",
+    "--device=/dev/dri:/dev/dri",
+    "--volume", "/dev/shm:/dev/shm",
+    "--env", "LIBGL_ALWAYS_INDIRECT=0",
+    "--env", "MESA_GL_VERSION_OVERRIDE=3.3",
+    "--privileged",
+    "--net=host"
+  ],
+  "postStartCommand": "echo 'DevContainer for SuperTuxKart is now ready!'",
+  "remoteUser": "ubuntu"
+}
